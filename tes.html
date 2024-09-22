@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #007BFF;
+            color: white;
+        }
+        h1 {
+            margin: 0;
+        }
+        .container {
+            margin: 0 auto;
+            max-width: 600px;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .video-preview {
+            margin: 20px 0;
+            max-width: 100%;
+            max-height: 400px;
+        }
+        label {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Upload Your Video</h1>
+</header>
+
+<div class="container">
+    <form id="videoForm" action="/upload" method="POST" enctype="multipart/form-data">
+        <label for="videoInput">Select a video to upload:</label>
+        <input type="file" id="videoInput" name="video" accept="video/*" required>
+        
+        <button type="submit">Submit Video</button>
+    </form>
+
+    <video id="videoPreview" class="video-preview" controls hidden></video>
+</div>
+
+<script>
+    // Display the uploaded video preview
+    const videoInput = document.getElementById('videoInput');
+    const videoPreview = document.getElementById('videoPreview');
+
+    videoInput.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const videoURL = URL.createObjectURL(file);
+            videoPreview.src = videoURL;
+            videoPreview.hidden = false;
+        }
+    });
+
+    // Optional: Send the video to a backend API (handled by the form action)
+    const form = document.getElementById('videoForm');
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent default form submission
+        
+        const formData = new FormData(form);
+        try {
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData,
+            });
+            if (response.ok) {
+                alert('Video uploaded successfully!');
+            } else {
+                alert('Failed to upload video.');
+            }
+        } catch (error) {
+            console.error('Error uploading video:', error);
+            alert('Error uploading video.');
+        }
+    });
+</script>
+
+</body>
+</html>
