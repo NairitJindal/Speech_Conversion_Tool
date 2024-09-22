@@ -1,76 +1,50 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Upload</title>
+    <title>Video to Audio Extractor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            padding: 20px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-        header {
-            text-align: center;
-            padding: 20px;
-            background-color: #007BFF;
-            color: white;
-        }
-        h1 {
-            margin: 0;
-        }
-        .container {
-            margin: 0 auto;
-            max-width: 600px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .video-preview {
-            margin: 20px 0;
-            max-width: 100%;
-            max-height: 400px;
-        }
-        label {
-            font-size: 16px;
-            font-weight: bold;
-        }
-        input[type="file"] {
-            display: block;
-            margin: 10px 0;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 15px;
-            border: none;
+        #videoInput {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            background-color: #f8f9fa;
             cursor: pointer;
         }
-        button:hover {
+        #videoInput::-webkit-file-upload-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #videoInput::-webkit-file-upload-button:hover {
             background-color: #0056b3;
+        }
+        video {
+            max-width: 100%;
+            margin-top: 20px;
+        }
+        audio {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
+    <input type="file" id="videoInput" accept="video/*" />
+    <audio id="audioPlayer" controls hidden></audio>
+    <video id="videoElement" controls></video>
 
-<header>
-    <h1>Upload Your Video</h1>
-</header>
-
-<div class="container">
-    <form id="videoForm">
-        <label for="videoInput">Select a video to extract and send audio:</label>
-        <input type="file" id="videoInput" accept="video/*" required>
-        
-    </form>
-
-    <audio id="audioPlayer" class="audio-player" controls hidden></audio>
-</div>
-
-<script src="test.js">
-
-</script>
-
+    <script src="test.js"></script>
 </body>
 </html>
