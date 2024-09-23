@@ -1,5 +1,7 @@
 const videoInput = document.getElementById('videoInput');
 const VidElement = document.getElementById('videoElement');
+const lang = document.getElementById("Target Language");
+const voice = document.getElementById("Voice")
 
 videoInput.addEventListener('change', async (event) => {
     const file = event.target.files[0];

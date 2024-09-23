@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Translation UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .panel {
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 8px;
+            width: 45%;
+            text-align: center;
+        }
+        .panel h2 {
+            margin-bottom: 20px;
+        }
+        .dropdowns {
+            display: flex;
+            justify-content: space-evenly;
+
+            margin-bottom: 20px;
+        }
+        .dropdowns select {
+            padding: 5px;
+            width: 18%;
+        }
+        .recording-area {
+            margin-top: 40px;
+            padding: 20px;
+            border: 2px solid #0066CC;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .recording-area:hover {
+            background-color: #f0f0f0;
+        }
+        .translated-speech {
+            margin-top: 40px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .convert-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0066CC;
+            border: none;
+            border-radius: 5px;
+            color: rgb(255, 255, 255);
+            cursor: pointer;
+        }
+        img {
+            text-align: center;
+            align-self: center;
+            width: 50px;
+            height: 50px;
+        }
+        .upload_btn{
+            text-align: center;
+            cursor: pointer;
+            background: #948383;
+            display: inline-block;
+            width: 90px;
+            height: 90px;
+            border-radius: 25%;
+        }
+        .fileinput{
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="dropdowns">
+        <select>
+            <optgroup label= "Source Language"></optgroup>
+                <option>English</option>
+        </select>
+        <select name="Target Language" id = "Target Language">
+            <optgroup label= "Target Language"></optgroup>
+                <option>Hindi</option>
+                <option>x</option>
+                <option>y</option>
+        </select>
+        <select name="Voice" id = "Voice">
+            <optgroup label= "Voice"></optgroup>
+                <option>Male</option>
+                <option>Female</option>
+        </select>
+        <select>
+            <optgroup label= "ASR Model"></optgroup>
+                <option>ASR</option>     
+        </select>
+        <select>
+            <optgroup label= "Translation Model"></optgroup>
+                <option>TM</option>  
+        </select>
+        <select>
+            <optgroup label= "TTS Model"></optgroup>
+                <option>TTS</option>  
+        </select>
+        <button class="convert-btn">Clear</button>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+            <h2>Upload Video</h2>
+            <div>
+                <label class="upload_btn" id="upload_btn">
+                    <p style="text-align:center;">
+                        <video id="videoElement" controls hidden></video>
+                        <input class="fileinput"  type="file" id="videoInput" accept="video/*" />
+                    
+                        <img src="https://cdn-icons-png.freepik.com/256/1179/1179120.png" alt="Video Icon">
+                    </p>
+                </label>
+            </div>
+            <p>Max duration: 10 min</p>
+            <button class="convert-btn">Convert</button>
+        </div>
+
+        <div class="panel">
+            <h2>Translated Video</h2>
+            <div class="translated-speech">
+                <!-- Translated speech video will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer" controls hidden></audio>
+    
+
+    <script src="test.js"></script>
+</body>
+</html>
